@@ -16,6 +16,7 @@ namespace Alptulupta.Core
             services.AddSingleton<IRandom, Random>();
             services.AddSingleton<IKeyboardHelper, KeyboardHelper>();
             services.AddSingleton<IMouseHelper, MouseHelper>();
+            services.AddSingleton<IGamepadHelper, GamepadHelper>();
         }
     }
 }

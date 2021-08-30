@@ -16,6 +16,7 @@ namespace Alptulupta.Core
         private readonly IShapeFactory shapeFactory;
         private readonly IKeyboardHelper keyboardHelper;
         private readonly IMouseHelper mouseHelper;
+        private readonly IGamepadHelper gamepadHelper;
 
         private SpriteBatch spriteBatch;
         private readonly List<StaticShape> shapes = new List<StaticShape>();
@@ -24,11 +25,13 @@ namespace Alptulupta.Core
 
         public AlptuluptaGame(IShapeFactory shapeFactory,
             IKeyboardHelper keyboardHelper,
-            IMouseHelper mouseHelper)
+            IMouseHelper mouseHelper,
+            IGamepadHelper gamepadHelper)
         {
             this.shapeFactory = shapeFactory;
             this.keyboardHelper = keyboardHelper;
             this.mouseHelper = mouseHelper;
+            this.gamepadHelper = gamepadHelper;
 
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
@@ -36,6 +39,7 @@ namespace Alptulupta.Core
 
             updateables.Add(keyboardHelper);
             updateables.Add(mouseHelper);
+            updateables.Add(gamepadHelper);
         }
 
         protected override void Initialize()
