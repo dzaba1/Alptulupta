@@ -1,12 +1,15 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Alptulupta.Core
 {
     internal interface IGamepadHelper : IUpdateable
     {
         IReadOnlyDictionary<int, Buttons> GetNewButtonsPressed();
+        void Vibrate(int index);
     }
 
     internal sealed class GamepadHelper : IGamepadHelper
@@ -34,6 +37,16 @@ namespace Alptulupta.Core
                     CheckButtons(state.Key, state.Value);
                 }
             }
+        }
+
+        public void Vibrate(int index)
+        {
+            Task.Run(() =>
+            {
+                GamePad.SetVibration(index, 1, 1);
+                Thread.Sleep(300);
+                GamePad.SetVibration(index, 0, 0);
+            });
         }
 
         private void CheckButtons(int index, GamePadState state)

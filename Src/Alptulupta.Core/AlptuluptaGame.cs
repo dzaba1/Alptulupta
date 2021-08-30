@@ -109,6 +109,7 @@ namespace Alptulupta.Core
                 if (gamepadButtons.Value != 0)
                 {
                     gamepads = true;
+                    gamepadHelper.Vibrate(gamepadButtons.Key);
                 }
             }
 
