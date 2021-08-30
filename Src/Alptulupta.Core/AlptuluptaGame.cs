@@ -99,6 +99,22 @@ namespace Alptulupta.Core
             return Keyboard.GetState().IsKeyDown(Keys.Z) && Keyboard.GetState().IsKeyDown(Keys.F4);
         }
 
+        private bool IsSomethingPressed()
+        {
+            var keyboardAndMouse = keyboardHelper.GetNewPressed().Any() || mouseHelper.GetNewPressed() != 0;
+
+            var gamepads = false;
+            foreach (var gamepadButtons in gamepadHelper.GetNewButtonsPressed())
+            {
+                if (gamepadButtons.Value != 0)
+                {
+                    gamepads = true;
+                }
+            }
+
+            return keyboardAndMouse || gamepads;
+        }
+
         protected override void Update(GameTime gameTime)
         {
             if (IsExit())
@@ -111,7 +127,7 @@ namespace Alptulupta.Core
                 updateable.Update(gameTime);
             }
 
-            if (keyboardHelper.GetNewPressed().Any() || mouseHelper.GetNewPressed() != 0)
+            if (IsSomethingPressed())
             {
                 shapes.Add(shapeFactory.Random(ScreenSize));
             }
