@@ -2,7 +2,7 @@
 
 ![alptulupta](https://user-images.githubusercontent.com/29174487/141289663-123af068-2bea-4d54-b303-f0152bbea7fb.png)
 
-Simple basher for small children.
+Simple basher for small children. Supports keyboard, mouse and pad (tested on the XBox one)
 
 I tried to cut of every special char hit. Usually works. Watch out for some NVIDIA shells and Ctrl+Alt+Delete
 
